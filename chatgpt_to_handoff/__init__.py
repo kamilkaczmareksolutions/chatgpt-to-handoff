@@ -1,5 +1,3 @@
-"""Turn a ChatGPT export or share link into HANDOFF.md or AGENTS.md."""
-
 from __future__ import annotations
 
 import argparse
@@ -57,7 +55,7 @@ _BARE_UUID = re.compile(
 
 @dataclass(frozen=True, slots=True)
 class ConversationSummary:
-    """One list row. ``update_time`` is UTC ``YYYY-MM-DDTHH:MM:SSZ`` or None."""
+    """``update_time`` is UTC ``YYYY-MM-DDTHH:MM:SSZ`` or None."""
 
     title: str
     id: str
@@ -69,8 +67,6 @@ class HandoffError(Exception):
 
     ``summaries`` is populated for an ambiguous id, an ambiguous title, or a
     multi-conversation source with no selector. Other failures leave it empty.
-    The implementation calls ``super().__init__(message)`` and stores
-    ``summaries``.
     """
 
     summaries: tuple[ConversationSummary, ...]
@@ -92,7 +88,6 @@ def write_handoff(
     output: str | os.PathLike[str] | None = None,
     agents_md: bool = False,
 ) -> Path:
-    """Write one handoff for ``source`` and return its path."""
     conversations = _load(source)
     selected = _select(
         conversations,
@@ -120,7 +115,7 @@ def list_conversations(
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    """CLI adapter. ``argv`` defaults to ``sys.argv[1:]``."""
+    """``argv`` defaults to ``sys.argv[1:]``."""
     if argv is None:
         argv = sys.argv[1:]
     parser = argparse.ArgumentParser(prog="chatgpt-to-handoff")
@@ -164,12 +159,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     return 0
 
 
-# --- domain. Wire values do not cross _parse_conversation. ---
-
-
 @dataclass(frozen=True, slots=True)
 class _Seal:
-    """Singleton token for the three retained-text constructors."""
+    pass
 
 
 _SEAL = _Seal()
@@ -177,8 +169,6 @@ _SEAL = _Seal()
 
 @dataclass(frozen=True, slots=True)
 class _Sealed:
-    """Base for values that only the branch pipeline may construct."""
-
     _seal: _Seal = field(repr=False, compare=False, kw_only=True)
 
     def __post_init__(self) -> None:
@@ -187,8 +177,6 @@ class _Sealed:
 
 
 class VisibleRole(enum.Enum):
-    """Roles that may appear in a handoff. Tool is not a member."""
-
     USER = "user"
     ASSISTANT = "assistant"
     SYSTEM = "system"
@@ -211,8 +199,6 @@ class SkipKind(enum.Enum):
 
 
 class _Channel(enum.Enum):
-    """One field so a message cannot be both absent and non-final."""
-
     ABSENT = "absent"
     FINAL = "final"
     OTHER = "other"
@@ -225,38 +211,28 @@ class DocumentKind(enum.Enum):
 
 @dataclass(frozen=True, slots=True)
 class ProseLine:
-    """One line outside a fence. Matching never sees code bodies."""
-
     text: str
 
 
 @dataclass(frozen=True, slots=True)
 class CodeSpan:
-    """One fenced block or one content_type ``code`` text part."""
-
     language: str | None
     body: str
 
 
 @dataclass(frozen=True, slots=True)
 class VisibleMessage(_Sealed):
-    """On-branch text the handoff may contain."""
-
     role: VisibleRole
     segments: tuple[ProseLine | CodeSpan, ...]
 
 
 @dataclass(frozen=True, slots=True)
 class SkippedNode:
-    """On-branch node whose text was discarded. Not stored on ActiveBranch."""
-
     kind: SkipKind
 
 
 @dataclass(frozen=True, slots=True)
 class _RawMessage:
-    """Message after the JSON boundary. Non-text parts are None."""
-
     role: _AuthorRole | None
     content_type: str | None
     parts: tuple[str | None, ...]
@@ -266,16 +242,12 @@ class _RawMessage:
 
 @dataclass(frozen=True, slots=True)
 class _TreeNode:
-    """Parent pointer plus raw message. The export ``children`` array is not a field."""
-
     id: str
     parent_id: str | None
     message: _RawMessage | None
 
 
 class _MappingTree:
-    """Parent-pointer index for one conversation object."""
-
     __slots__ = ("_current_id", "_by_id")
 
     def __init__(
@@ -287,7 +259,6 @@ class _MappingTree:
         self._by_id = by_id
 
     def active_branch(self) -> ActiveBranch:
-        """Walk parents from ``current_node`` to the root, then reverse."""
         node_id: str | None = self._current_id
         chain: list[_TreeNode] = []
         seen: set[str] = set()
@@ -315,15 +286,11 @@ class _MappingTree:
 
 @dataclass(frozen=True, slots=True)
 class ActiveBranch(_Sealed):
-    """Visible messages on the current_node chain, root first."""
-
     messages: tuple[VisibleMessage, ...]
 
 
 @dataclass(frozen=True, slots=True)
 class _Conversation:
-    """One export conversation reduced to its visible active branch."""
-
     title: str
     id: str
     conversation_id: str | None
@@ -333,8 +300,6 @@ class _Conversation:
 
 @dataclass(frozen=True, slots=True)
 class Transcript(_Sealed):
-    """Document model. ``_render_document`` accepts only this type."""
-
     title: str
     conversation_id: str
     source_label: str
@@ -343,8 +308,6 @@ class Transcript(_Sealed):
 
 @dataclass(frozen=True, slots=True)
 class _Sections:
-    """Heuristic facts. Empty string or empty tuples mean no hits."""
-
     goal_and_context: str
     decisions: tuple[str, ...]
     requirements: tuple[str, ...]

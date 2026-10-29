@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Empty sections",
+    "id": "00000000-0000-4000-8000-000000000099",
+    "current_node": "assist",
+    "mapping": {
+      "root": {"id": "root", "parent": null, "message": null},
+      "user": {
+        "id": "user",
+        "parent": "root",
+        "message": {
+          "author": {"role": "user"},
+          "content": {"content_type": "text", "parts": ["Hi"]},
+          "metadata": {"is_visually_hidden_from_conversation": false}
+        }
+      },
+      "assist": {
+        "id": "assist",
+        "parent": "user",
+        "message": {
+          "author": {"role": "assistant"},
+          "content": {"content_type": "text", "parts": ["Hello"]},
+          "metadata": {"is_visually_hidden_from_conversation": false},
+          "channel": "final"
+        }
+      }
+    }
+  }
+]

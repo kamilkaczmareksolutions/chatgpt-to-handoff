@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Multimodal",
+    "id": "33333333-3333-4333-8333-333333333333",
+    "current_node": "user",
+    "mapping": {
+      "root": {"id": "root", "parent": null, "message": null},
+      "user": {
+        "id": "user",
+        "parent": "root",
+        "message": {
+          "author": {"role": "user"},
+          "content": {
+            "content_type": "multimodal_text",
+            "parts": ["before ", {"asset_pointer": "file://x"}, " after"]
+          },
+          "metadata": {"is_visually_hidden_from_conversation": false}
+        }
+      }
+    }
+  }
+]

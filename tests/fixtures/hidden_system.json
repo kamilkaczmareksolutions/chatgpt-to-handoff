@@ -1,0 +1,28 @@
+[
+  {
+    "title": "Hidden system",
+    "id": "22222222-2222-4222-8222-222222222222",
+    "current_node": "user",
+    "mapping": {
+      "root": {"id": "root", "parent": null, "message": null},
+      "hidden_sys": {
+        "id": "hidden_sys",
+        "parent": "root",
+        "message": {
+          "author": {"role": "system"},
+          "content": {"content_type": "text", "parts": ["SECRET_SYSTEM_PROMPT"]},
+          "metadata": {"is_visually_hidden_from_conversation": true}
+        }
+      },
+      "user": {
+        "id": "user",
+        "parent": "hidden_sys",
+        "message": {
+          "author": {"role": "user"},
+          "content": {"content_type": "text", "parts": ["Visible user line"]},
+          "metadata": {"is_visually_hidden_from_conversation": false}
+        }
+      }
+    }
+  }
+]

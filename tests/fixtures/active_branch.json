@@ -1,0 +1,46 @@
+[
+  {
+    "title": "Branch test",
+    "id": "11111111-1111-4111-8111-111111111111",
+    "current_node": "assist",
+    "mapping": {
+      "root": {
+        "id": "root",
+        "parent": null,
+        "message": null
+      },
+      "user": {
+        "id": "user",
+        "parent": "root",
+        "message": {
+          "author": {"role": "user"},
+          "content": {"content_type": "text", "parts": ["ACTIVE_USER_TURN"]},
+          "metadata": {"is_visually_hidden_from_conversation": false}
+        }
+      },
+      "assist": {
+        "id": "assist",
+        "parent": "user",
+        "message": {
+          "author": {"role": "assistant"},
+          "content": {"content_type": "text", "parts": ["ACTIVE_ASSISTANT_TURN"]},
+          "metadata": {"is_visually_hidden_from_conversation": false},
+          "channel": "final"
+        }
+      },
+      "sibling": {
+        "id": "sibling",
+        "parent": "user",
+        "message": {
+          "author": {"role": "assistant"},
+          "content": {
+            "content_type": "text",
+            "parts": ["SIBLING_EDIT_MUST_NOT_APPEAR"]
+          },
+          "metadata": {"is_visually_hidden_from_conversation": false},
+          "channel": "final"
+        }
+      }
+    }
+  }
+]

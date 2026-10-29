@@ -1,0 +1,19 @@
+[
+  {
+    "title": "Only one",
+    "id": "dddd0000-0000-4000-8000-000000000001",
+    "current_node": "u1",
+    "mapping": {
+      "root": {"id": "root", "parent": null, "message": null},
+      "u1": {
+        "id": "u1",
+        "parent": "root",
+        "message": {
+          "author": {"role": "user"},
+          "content": {"content_type": "text", "parts": ["solo"]},
+          "metadata": {"is_visually_hidden_from_conversation": false}
+        }
+      }
+    }
+  }
+]

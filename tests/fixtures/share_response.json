@@ -1,0 +1,20 @@
+{
+  "title": "Share fixture",
+  "id": "69b1c492-1540-8006-aa29-ee2e0a831385",
+  "current_node": "user",
+  "mapping": {
+    "root": {"id": "root", "parent": null, "message": null},
+    "user": {
+      "id": "user",
+      "parent": "root",
+      "message": {
+        "author": {"role": "user"},
+        "content": {
+          "content_type": "text",
+          "parts": ["SHARE_FIXTURE_USER_VISIBLE"]
+        },
+        "metadata": {"is_visually_hidden_from_conversation": false}
+      }
+    }
+  }
+}

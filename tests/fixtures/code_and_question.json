@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Code and questions",
+    "id": "eeee0000-0000-4000-8000-000000000001",
+    "current_node": "assist",
+    "mapping": {
+      "root": {"id": "root", "parent": null, "message": null},
+      "user": {
+        "id": "user",
+        "parent": "root",
+        "message": {
+          "author": {"role": "user"},
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "First user message for goal.\n\n```python\nprint('hi')\n```\n\nWhat is the status?"
+            ]
+          },
+          "metadata": {"is_visually_hidden_from_conversation": false}
+        }
+      },
+      "assist": {
+        "id": "assist",
+        "parent": "user",
+        "message": {
+          "author": {"role": "assistant"},
+          "content": {"content_type": "text", "parts": ["Done."]},
+          "metadata": {"is_visually_hidden_from_conversation": false},
+          "channel": "final"
+        }
+      }
+    }
+  }
+]

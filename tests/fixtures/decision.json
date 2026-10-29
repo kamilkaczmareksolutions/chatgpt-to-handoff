@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Decision chat",
+    "id": "ffff0000-0000-4000-8000-000000000001",
+    "current_node": "assist",
+    "mapping": {
+      "root": {"id": "root", "parent": null, "message": null},
+      "user": {
+        "id": "user",
+        "parent": "root",
+        "message": {
+          "author": {"role": "user"},
+          "content": {"content_type": "text", "parts": ["Plan the feature"]},
+          "metadata": {"is_visually_hidden_from_conversation": false}
+        }
+      },
+      "assist": {
+        "id": "assist",
+        "parent": "user",
+        "message": {
+          "author": {"role": "assistant"},
+          "content": {
+            "content_type": "text",
+            "parts": ["OK, we will use PostgreSQL for storage."]
+          },
+          "metadata": {"is_visually_hidden_from_conversation": false},
+          "channel": "final"
+        }
+      }
+    }
+  }
+]

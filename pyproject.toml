@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chatgpt-to-handoff"
+version = "0.1.0"
+description = "Deterministic ChatGPT export to HANDOFF.md or AGENTS.md"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+chatgpt-to-handoff = "chatgpt_to_handoff:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["chatgpt_to_handoff*"]

@@ -7,7 +7,7 @@
 ## Quick start
 
 1. In ChatGPT, open Settings, then Data controls, then Export data. Download the zip from the email OpenAI sends.
-2. Install the command with `pipx install chatgpt-to-handoff` or run it with `uvx chatgpt-to-handoff`.
+2. Install the command with `pipx install git+https://github.com/kamilkaczmareksolutions/chatgpt-to-handoff` or run it once with `uvx --from git+https://github.com/kamilkaczmareksolutions/chatgpt-to-handoff chatgpt-to-handoff`.
 3. Write the handoff. If the export contains one conversation, this is enough:
 
 ```bash
